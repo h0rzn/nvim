@@ -3,15 +3,6 @@ require("lazy").setup({
 	-- Detect tabstop and shiftwidth automatically
 	"tpope/vim-sleuth",
 
-	-- NOTE: Plugins can also be added by using a table,
-	-- with the first argument being the link and the following
-	-- keys can be used to configure plugin behavior/loading/etc.
-	--
-	-- Use `opts = {}` to force a plugin to be loaded.
-	--
-	--  This is equivalent to:
-	--    require('Comment').setup({})
-
 	-- "gc" to comment visual regions/lines
 	{
 		"numToStr/Comment.nvim",
@@ -139,7 +130,8 @@ require("lazy").setup({
 		end,
 	},
 
-	{ -- LSP Configuration & Plugins
+	-- LSP Configuration & Plugins
+	{
 		"neovim/nvim-lspconfig",
 		dependencies = {
 			-- Automatically install LSPs and related tools to stdpath for Neovim
@@ -388,7 +380,8 @@ require("lazy").setup({
 		end,
 	},
 
-	{ -- Autoformat
+	-- Autoformat
+	{
 		"stevearc/conform.nvim",
 		lazy = false,
 		keys = {
@@ -425,7 +418,8 @@ require("lazy").setup({
 		},
 	},
 
-	{ -- Autocompletion
+	-- Autocompletion
+	{
 		"hrsh7th/nvim-cmp",
 		event = "InsertEnter",
 		dependencies = {
@@ -563,7 +557,8 @@ require("lazy").setup({
 		opts = { signs = false },
 	},
 
-	{ -- Collection of various small independent plugins/modules
+	-- Collection of various small independent plugins/modules
+	{
 		"echasnovski/mini.nvim",
 		config = function()
 			-- Better Around/Inside textobjects
@@ -599,7 +594,9 @@ require("lazy").setup({
 			--  Check out: https://github.com/echasnovski/mini.nvim
 		end,
 	},
-	{ -- Highlight, edit, and navigate code
+
+	-- Highlight, edit, and navigate code
+	{
 		"nvim-treesitter/nvim-treesitter",
 		build = ":TSUpdate",
 		opts = {
@@ -641,6 +638,7 @@ require("lazy").setup({
 		end,
 	},
 
+	-- File System View
 	{
 		"nvim-neo-tree/neo-tree.nvim",
 		branch = "v3.x",
@@ -675,6 +673,7 @@ require("lazy").setup({
 		end,
 	},
 
+	-- Diagnostics viewer
 	{
 		"folke/trouble.nvim",
 		branch = "dev",
@@ -714,6 +713,7 @@ require("lazy").setup({
 		opts = {},
 	},
 
+	-- Session Manager
 	{
 		"stevearc/resession.nvim",
 		config = function(_self, _opts)
@@ -732,22 +732,6 @@ require("lazy").setup({
 			})
 		end,
 	},
-
-	-- The following two comments only work if you have downloaded the kickstart repo, not just copy pasted the
-	-- init.lua. If you want these files, they are in the repository, so you can just download them and
-	-- place them in the correct locations.
-
-	-- NOTE: Next step on your Neovim journey: Add/Configure additional plugins for Kickstart
-	--
-	--  Here are some example plugins that I've included in the Kickstart repository.
-	--  Uncomment any of the lines below to enable them (you will need to restart nvim).
-	--
-	-- require 'kickstart.plugins.debug',
-	-- require 'kickstart.plugins.indent_line',
-	-- require 'kickstart.plugins.lint',
-	-- require 'kickstart.plugins.autopairs',
-	-- require 'kickstart.plugins.neo-tree',
-	-- require 'kickstart.plugins.gitsigns', -- adds gitsigns recommend keymaps
 
 	-- NOTE: The import below can automatically add your own plugins, configuration, etc from `lua/custom/plugins/*.lua`
 	--    This is the easiest way to modularize your config.
