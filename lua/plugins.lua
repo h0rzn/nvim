@@ -598,6 +598,9 @@ require("lazy").setup({
 	-- Highlight, edit, and navigate code
 	{
 		"nvim-treesitter/nvim-treesitter",
+		dependencies = {
+			"nvim-treesitter/nvim-treesitter-textobjects",
+		},
 		build = ":TSUpdate",
 		opts = {
 			ensure_installed = { "bash", "c", "diff", "html", "lua", "luadoc", "markdown", "vim", "vimdoc" },
@@ -611,11 +614,12 @@ require("lazy").setup({
 			},
 			textobjects = {
 				move = {
+					enable = true,
 					goto_next_start = {
-						["L"] = "@function.outer",
+						["<C-j>"] = "@function.outer",
 					},
 					goto_previous_start = {
-						[";"] = "@function.outer",
+						["<C-k>"] = "@function.outer",
 					},
 				},
 			},
@@ -630,11 +634,7 @@ require("lazy").setup({
 			require("nvim-treesitter.configs").setup(opts)
 
 			-- There are additional nvim-treesitter modules that you can use to interact
-			-- with nvim-treesitter. You should go explore a few and see what interests you:
-			--
-			--    - Incremental selection: Included, see `:help nvim-treesitter-incremental-selection-mod`
-			--    - Show your current context: https://github.com/nvim-treesitter/nvim-treesitter-context
-			--    - Treesitter + textobjects: https://github.com/nvim-treesitter/nvim-treesitter-textobjects
+			-- with nvim-treesitter.
 		end,
 	},
 
@@ -653,7 +653,7 @@ require("lazy").setup({
 			enable_diagnostics = false,
 			open_files_do_not_replace_types = { "terminal", "trouble", "qf", "vimdoc", "lua" },
 			filesystem = {
-				hijack_netrw_behavior = "open_current", -- "open_default",
+				hijack_netrw_behavior = "open_current",
 				filtered_items = {
 					visible = true, -- when true, they will just be displayed differently than normal items
 					hide_dotfiles = true,
@@ -662,10 +662,18 @@ require("lazy").setup({
 			},
 			window = {
 				position = "right",
-				mappings = {
-					["<leader>e"] = "toggle_node",
-					-- ["<leader>o"] = "foc
-				},
+			},
+		},
+		keys = {
+			{
+				"<leader>e",
+				"<cmd>Neotree toggle current reveal_force_cwd<cr>",
+				desc = "Neotree toggle",
+			},
+			{
+				"<leader>o",
+				"<cmd>Neotree action=focus<cr>",
+				desc = "Neotree focus",
 			},
 		},
 		config = function(_, opts)
