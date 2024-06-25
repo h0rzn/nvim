@@ -139,5 +139,12 @@ vim.opt.rtp:prepend(lazypath)
 --]]
 require("plugins")
 
+vim.api.nvim_create_user_command("Format",
+  function ()
+    require("conform").format({ async = true, lsp_fallback = true })
+  end,
+  {}
+)
+
 -- The line beneath this is called `modeline`. See `:help modeline`
 -- vim: ts=2 sts=2 sw=2 et
