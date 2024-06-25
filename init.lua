@@ -4,6 +4,7 @@
 vim.g.mapleader = " "
 vim.g.maplocalleader = " "
 
+require("config.lazy")
 -- Set to true if you have a Nerd Font installed and selected in the terminal
 -- vim.g.have_nerd_font = false
 
@@ -109,9 +110,6 @@ vim.keymap.set("n", "<C-k>", "<C-w><C-k>", { desc = "Move focus to the upper win
 vim.keymap.set("n", "<C-h>", "<cmd>tabprev<cr>")
 vim.keymap.set("n", "<C-l>", "<cmd>tabnext<cr>")
 
--- [[ Basic Autocommands ]]
---  See `:help lua-guide-autocommands`
-
 -- Highlight when yanking (copying) text
 --  Try it with `yap` in normal mode
 --  See `:help vim.highlight.on_yank()`
@@ -122,22 +120,6 @@ vim.api.nvim_create_autocmd("TextYankPost", {
 		vim.highlight.on_yank()
 	end,
 })
-
--- [[ Install `lazy.nvim` plugin manager ]]
---    See `:help lazy.nvim.txt` or https://github.com/folke/lazy.nvim for more info
-local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
-if not vim.loop.fs_stat(lazypath) then
-	local lazyrepo = "https://github.com/folke/lazy.nvim.git"
-	vim.fn.system({ "git", "clone", "--filter=blob:none", "--branch=stable", lazyrepo, lazypath })
-end ---@diagnostic disable-next-line: undefined-field
-vim.opt.rtp:prepend(lazypath)
-
---[[
---
--- Load Plugins
---
---]]
-require("plugins")
 
 vim.api.nvim_create_user_command("Format",
   function ()
