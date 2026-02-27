@@ -128,5 +128,18 @@ vim.api.nvim_create_user_command("Format",
   {}
 )
 
+vim.api.nvim_create_user_command("Cursorpos",
+  function ()
+    local l, c = unpack(vim.api.nvim_win_get_cursor(0))
+    print(l-1, c)
+  end,
+  {}
+)
+
+-- vim.filetype.add({
+--   extension = {
+--     dbml = "dbml",
+-- }})
+
 -- The line beneath this is called `modeline`. See `:help modeline`
 -- vim: ts=2 sts=2 sw=2 et

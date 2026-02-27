@@ -164,7 +164,7 @@ return {
 		--  When you add nvim-cmp, luasnip, etc. Neovim now has *more* capabilities.
 		--  So, we create new capabilities with nvim cmp, and then broadcast that to the servers.
 		local capabilities = vim.lsp.protocol.make_client_capabilities()
-		capabilities = vim.tbl_deep_extend("force", capabilities, require("cmp_nvim_lsp").default_capabilities())
+		-- capabilities = vim.tbl_deep_extend("force", capabilities, require("cmp_nvim_lsp").default_capabilities())
 
 		-- Enable the following language servers
 		--  Feel free to add/remove any LSPs that you want here. They will automatically be installed.
@@ -176,6 +176,7 @@ return {
 		--  - settings (table): Override the default settings passed when initializing the server.
 		--        For example, to see the options for `lua_ls`, you could go to: https://luals.github.io/wiki/settings/
 		local servers = {
+			zls = {},
 			-- clangd = {},
 			gopls = {
 				cmd = { "gopls" },
@@ -202,7 +203,28 @@ return {
 					},
 				},
 			},
-			-- pyright = {},
+
+			tinymist = {},
+
+			basedpyright = {
+				settings = {
+					basedpyright = {
+						analysis = {
+							typeCheckingMode = "basic",
+
+							reportUnknownVariableType = "none",
+							reportUnknownMemberType = "none",
+							reportUnknownParameterType = "none",
+							reportUnknownArgumentType = "none",
+							reportUnknownLambdaType = "none",
+							reportUnknownReturnType = "none",
+
+							reportMissingTypeStubs = "none",
+						},
+					},
+				},
+			},
+
 			-- rust_analyzer = {},
 			-- ... etc. See `:help lspconfig-all` for a list of all the pre-configured LSPs
 			--
@@ -210,7 +232,10 @@ return {
 			--    https://github.com/pmizio/typescript-tools.nvim
 			--
 			-- But for many setups, the LSP (`tsserver`) will work just fine
-			tsserver = {},
+			-- tsserver = {
+			-- mason = false,
+			-- enabled = false
+			-- },
 			--
 
 			lua_ls = {
@@ -228,6 +253,20 @@ return {
 				},
 			},
 		}
+
+		--
+		-- Local servers
+		--
+		-- local lspconfig = require("lspconfig")
+		-- require("lspconfig.configs").dbml_lsp_ts = {
+		-- 	default_config = {
+		-- 		cmd = { "lsp-devtools", "agent", "--", "/Users/theo/go/src/github.com/h0rzn/dbml-tools/exec_dev.sh" },
+		-- 		filetypes = { "dbml" },
+		-- 		root_dir = lspconfig.util.root_pattern("main.go"),
+		-- 		settings = {},
+		-- 	},
+		-- }
+		-- lspconfig.dbml_lsp_ts.setup {}
 
 		-- Ensure the servers and tools above are installed
 		--  To check the current status of installed tools and/or manually install

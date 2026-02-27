@@ -1,0 +1,24 @@
+return {}
+
+-- return {
+-- 	"lukas-reineke/indent-blankline.nvim",
+-- 	main = "ibl",
+-- 	---@module "ibl"
+-- 	---@type ibl.config
+-- 	opts = {},
+-- 	config = function()
+-- 		vim.cmd [[highlight IndentBlanklineIndent1 guifg=#E06C75 gui=nocombine]]
+-- 		vim.cmd [[highlight IndentBlanklineIndent2 guifg=#E5C07B gui=nocombine]]
+-- 		vim.cmd [[highlight IndentBlanklineIndent3 guifg=#98C379 gui=nocombine]]
+-- 		require("ibl").setup({
+-- 			indent = {
+-- 				char = "|",
+-- 				highlight = {
+-- 					"IndentBlanklineIndent1",
+-- 					"IndentBlanklineIndent2",
+-- 					"IndentBlanklineIndent3",
+-- 				}
+-- 			}
+-- 		})
+-- 	end,
+-- }
